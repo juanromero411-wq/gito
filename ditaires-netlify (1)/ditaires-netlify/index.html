@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dito, tu guía en el Complejo Deportivo Ditaires</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#FAFAF8;--ink:#121828;--mut:#4d5466;--card:#fff;--line:#e3e3df;--or:#E8590C;--teal:#0F766E;--tint:#EAF7F5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#121828;--ink:#F5F5F4;--mut:#aab1c2;--card:#1b2338;--line:#2b3550;--tint:#16303a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.5 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Space Grotesk","DM Sans",system-ui,sans-serif;margin:0}
+h2{font-size:21px;margin:26px 0 10px}
+.app{max-width:760px;margin:0 auto;padding:16px 16px 40px}
+.top{display:grid;grid-template-columns:130px minmax(0,1fr);gap:14px;align-items:center}
+#dito{width:130px;animation:bob 3.2s ease-in-out infinite}
+.bubble{background:var(--tint);border:1px solid var(--line);border-radius:18px;padding:14px 16px;font-size:18px;min-height:96px}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 4.5s infinite}
+#mouth{transform-box:fill-box;transform-origin:center;transform:scaleY(.3)}
+#dito.talking #mouth{animation:talk .22s infinite alternate}
+@keyframes talk{to{transform:scaleY(1)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.warn{background:#FFF3CD;color:#5c4400;border-radius:10px;padding:8px 12px;font-size:15px;margin:12px 0 0}
+button{font:700 17px "DM Sans",system-ui,sans-serif;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:12px 14px;cursor:pointer;min-height:50px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.quick button{text-align:left;border-left:6px solid var(--teal)}
+.quick button:nth-child(2n){border-left-color:var(--or)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{flex:1 0 64px;padding:10px 4px;text-align:center}
+.tabs button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+#res{display:grid;gap:10px}
+.cl{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--or);border-radius:14px;padding:12px 16px}
+.cl h3{font-size:20px}.cl p{margin:2px 0 0}.mut{color:var(--mut)}
+.ask{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px}
+.ask input{font:400 17px "DM Sans",system-ui,sans-serif;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:12px 14px;min-height:50px;min-width:0}
+.ask button{background:var(--teal);border-color:var(--teal);color:#fff}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+#wel{position:fixed;inset:0;z-index:20;background:var(--bg);display:grid;place-items:center;text-align:center;padding:24px}
+#wel h2{font-size:clamp(32px,8vw,52px)}#wel p{font-size:20px;color:var(--mut);margin:0 auto 26px;max-width:420px}
+#start{background:var(--or);border-color:var(--or);color:#fff;font-size:22px;padding:18px 28px;min-height:64px}
+body.big{font-size:22px}body.big .bubble,body.big button,body.big .ask input{font-size:21px}body.big .cl h3{font-size:25px}
+@media (max-width:520px){.top{grid-template-columns:96px minmax(0,1fr)}#dito{width:96px}.ask{grid-template-columns:1fr 1fr}.ask input{grid-column:1/3}}
+@media (prefers-reduced-motion:reduce){#dito,.eye,#dito.talking #mouth{animation:none}}
+</style>
+</head>
+<body>
+<div id="wel"><div><h2>¡Hola! Soy Dito</h2><p>Soy tu guía en el Complejo Deportivo Ditaires. Te cuento qué clases hay y cuándo son.</p><button id="start">Toca aquí para empezar</button></div></div>
+<noscript><p style="padding:20px">Esta página necesita JavaScript activado para funcionar.</p></noscript>
+<main class="app">
+  <header class="top">
+    <svg id="dito" viewBox="0 0 200 230" role="img" aria-label="Dito, el guía del complejo">
+      <rect x="52" y="152" width="96" height="70" rx="28" fill="#0F766E"/><rect x="86" y="146" width="28" height="18" rx="6" fill="#F2C9A0"/>
+      <circle cx="100" cy="190" r="9" fill="#E8590C"/><circle cx="100" cy="92" r="54" fill="#F2C9A0"/>
+      <path d="M44 86 Q100 14 156 86 Z" fill="#E8590C"/><rect x="96" y="78" width="78" height="11" rx="5.5" fill="#B83F05"/><circle cx="100" cy="46" r="6" fill="#B83F05"/>
+      <circle class="eye" cx="78" cy="100" r="6" fill="#121828"/><circle class="eye" cx="122" cy="100" r="6" fill="#121828"/>
+      <circle cx="66" cy="116" r="8" fill="#F0A58A" opacity=".6"/><circle cx="134" cy="116" r="8" fill="#F0A58A" opacity=".6"/>
+      <ellipse id="mouth" cx="100" cy="124" rx="13" ry="10" fill="#7C2D12"/>
+    </svg>
+    <div class="bubble" id="bub" aria-live="polite"></div>
+  </header>
+  <p class="warn" id="ej" hidden>Horarios de ejemplo para prueba. Cámbialos por los reales antes de publicar.</p>
+  <h2>¿Qué quieres saber?</h2>
+  <div class="quick" id="quick"></div>
+  <h2>Horario por día</h2>
+  <div class="tabs" id="tabs"></div>
+  <h2 id="rt"></h2>
+  <div id="res" aria-live="polite"></div>
+  <h2>Pregúntale a Dito</h2>
+  <div class="ask"><input id="q" type="text" maxlength="200" placeholder="Escribe tu pregunta" aria-label="Pregunta para Dito"><button id="mic">Hablar</button><button id="go">Preguntar</button></div>
+  <div class="ctl"><button id="big">Letra grande</button><button id="vz">Voz de Dito: sí</button></div>
+</main>
+<script>
+/* ===== DATOS: edita aquí los horarios reales ===== */
+var EJEMPLO=false; /* pon false cuando los horarios sean los reales */
+/* d: días (0=domingo ... 6=sábado) · h: hora en 24 h · m: minutos · t: etiquetas: mayor, baile, yoga, canto, agua */
+var CL=[
+{n:"Gimnasia para el adulto mayor",d:[1,3,5],h:"07:00",m:60,t:["mayor"],e:"Para personas mayores"},
+{n:"Natación para adultos mayores",d:[2,4],h:"10:00",m:45,t:["mayor","agua"],e:"Para personas mayores"},
+{n:"Natación para adultos",d:[1,2,3,4,5],h:"06:00",m:60,t:["agua"],e:"Para adultos"},
+{n:"Yoga",d:[2,4],h:"18:30",m:60,t:["yoga"],e:"Para adultos, todos los niveles"},
+{n:"Baile para adultos",d:[1,3],h:"19:00",m:60,t:["baile"],e:"Para adultos, sin experiencia"},
+{n:"Zumba",d:[6],h:"08:00",m:60,t:["baile"],e:"Para todos"},
+{n:"Canto",d:[6],h:"09:30",m:90,t:["canto"],e:"Para adultos"}
+];
+var NOSABE="Por ahora el complejo no tiene mapas ni letreros. Para encontrar baños, salidas o parqueaderos, pregúntale al personal de vigilancia. Estamos trabajando para que pronto sea más fácil.";
+/* ================================================= */
+var DN=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+var $=function(x){return document.getElementById(x)},VOICE=true,tok=0,turns=[],busy=false,cur=0;
+function fmt(h){var p=h.split(":"),H=+p[0];return ((H+11)%12+1)+":"+p[1]+(H<12?" a. m.":" p. m.")}
+function Y(a){return a.length<2?a.join(""):a.slice(0,-1).join(", ")+" y "+a[a.length-1]}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function when(c){return Y(c.d.map(function(x){return DN[x]}))+" a las "+fmt(c.h)}
+function card(c,day){return '<div class="cl"><h3>'+c.n+'</h3><p><b>'+(day?fmt(c.h):cap(when(c)))+'</b> · '+c.m+' minutos</p><p class="mut">'+c.e+'</p></div>'}
+function quiet(){tok++;if(window.speechSynthesis)speechSynthesis.cancel();$("dito").classList.remove("talking")}
+function say(t){
+  if(!VOICE||!(window.speechSynthesis&&window.SpeechSynthesisUtterance))return;
+  quiet();var my=tok,u=new SpeechSynthesisUtterance(t);u.lang="es-ES";
+  var v=speechSynthesis.getVoices().filter(function(x){return /^es/i.test(x.lang)})[0];if(v)u.voice=v;
+  var end=function(){if(my===tok)$("dito").classList.remove("talking")};
+  u.onstart=function(){if(my===tok)$("dito").classList.add("talking")};u.onend=end;u.onerror=end;speechSynthesis.speak(u);
+}
+function show(title,list,day,sp,mute){
+  $("rt").textContent=title;$("bub").textContent=sp;
+  $("res").innerHTML=list.map(function(c){return card(c,day)}).join("");
+  if(!mute){say(sp);$("rt").scrollIntoView({block:"nearest"})}
+}
+function dayView(d,hoy,mute){
+  cur=d;var l=CL.filter(function(c){return c.d.indexOf(d)>-1}).sort(function(a,b){return a.h<b.h?-1:1});
+  var n=hoy?"hoy":"el "+DN[d];
+  var sp=l.length?cap(n)+" hay: "+Y(l.map(function(c){return c.n+" a las "+fmt(c.h)}))+".":cap(n)+" no hay clases.";
+  show(hoy?"Clases de hoy ("+DN[d]+")":"Clases del "+DN[d],l,true,sp,mute);tabsOn(d);
+}
+function tag(tg,title,intro){
+  var l=CL.filter(function(c){return c.t.indexOf(tg)>-1});
+  show(title,l,false,l.length?intro+" "+l.map(function(c){return c.n+": "+when(c)}).join(". ")+".":"Por ahora no hay clases de esto.");tabsOn(-1);
+}
+var P=[
+["¿Qué clases hay hoy?",function(){dayView(new Date().getDay(),true)}],
+["Clases para adultos mayores",function(){tag("mayor","Clases para adultos mayores","Estas son las clases para adultos mayores.")}],
+["Horarios de natación",function(){tag("agua","Natación","Estos son los horarios de natación.")}],
+["Clases de baile",function(){tag("baile","Baile","Estas son las clases de baile.")}],
+["Yoga",function(){tag("yoga","Yoga","Estas son las clases de yoga.")}],
+["Canto",function(){tag("canto","Canto","Estas son las clases de canto.")}],
+["¿Dónde están los baños y las salidas?",function(){show("Baños, salidas y parqueaderos",[],false,NOSABE);tabsOn(-1)}]
+];
+$("quick").innerHTML=P.map(function(p,j){return '<button data-p="'+j+'">'+p[0]+'</button>'}).join("");
+$("quick").onclick=function(e){var j=e.target.getAttribute("data-p");if(j!==null)P[+j][1]()};
+var ORD=[1,2,3,4,5,6,0];
+$("tabs").innerHTML=ORD.map(function(d){return '<button data-d="'+d+'" aria-label="'+DN[d]+'">'+cap(DN[d]).slice(0,3)+'</button>'}).join("");
+function tabsOn(d){var b=$("tabs").children;for(var k=0;k<b.length;k++)b[k].className=(+b[k].getAttribute("data-d")===d)?"on":""}
+$("tabs").onclick=function(e){var d=e.target.getAttribute("data-d");if(d!==null)dayView(+d,+d===new Date().getDay())};
+function ctx(){return "Hoy es "+DN[new Date().getDay()]+".\n"+CL.map(function(c){return c.n+": "+when(c)+", "+c.m+" minutos. "+c.e+"."}).join("\n")}
+function ask(){
+  var q=$("q").value.trim();if(!q||busy)return;
+  busy=true;quiet();$("q").value="";$("go").disabled=true;$("bub").textContent="Dito está pensando…";
+  fetch("/api/dito",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({q:q,turns:turns,ctx:ctx()})})
+  .then(function(r){return r.json().then(function(d){if(!r.ok)throw {code:d.error||("http_"+r.status)};return d})})
+  .then(function(d){turns.push({role:"user",content:q},{role:"assistant",content:d.text});turns=turns.slice(-6);$("bub").textContent=d.text;say(d.text)})
+  .catch(function(){$("bub").textContent="Dito no pudo responder ahora. Prueba con los botones de arriba."})
+  .then(function(){busy=false;$("go").disabled=false});
+}
+$("go").onclick=ask;
+$("q").onkeydown=function(e){if(e.key=="Enter")ask()};
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR){$("mic").style.display="none"}else{$("mic").onclick=function(){
+  if(busy)return;quiet();var r=new SR();r.lang="es-CO";r.interimResults=false;r.maxAlternatives=1;$("mic").textContent="Te escucho…";
+  r.onresult=function(e){$("q").value=e.results[0][0].transcript;ask()};
+  r.onerror=function(){$("bub").textContent="No alcancé a escucharte. Intenta otra vez o escribe tu pregunta."};
+  r.onend=function(){$("mic").textContent="Hablar"};
+  try{r.start()}catch(x){$("mic").textContent="Hablar"}}}
+$("big").onclick=function(){var on=document.body.classList.toggle("big");$("big").textContent=on?"Letra normal":"Letra grande"};
+$("vz").onclick=function(){VOICE=!VOICE;if(!VOICE)quiet();$("vz").textContent="Voz de Dito: "+(VOICE?"sí":"no")};
+$("start").onclick=function(){$("wel").style.display="none";say("¡Hola! Soy Dito, tu guía en el complejo. Toca un botón para saber qué clases hay, o pregúntame hablando.")};
+if(EJEMPLO)$("ej").hidden=false;
+$("bub").textContent="¡Hola! Soy Dito. Toca un botón para saber qué clases hay y a qué hora son.";
+dayView(new Date().getDay(),true,true);
+</script>
+</body>
+</html>
